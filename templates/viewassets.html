@@ -1,0 +1,66 @@
+{% extends "template.html" %}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="static/buttons.css">
+<link rel="stylesheet" type="text/css" href="static/tables.css">
+<link rel="stylesheet" type="text/css" href="static/forms.css">
+<div class="forms">
+<form class="filter_form">
+<input type="text" id="assetFilterInput" placeholder="Type to filter...">
+</form>
+</div>
+<table id="assetTable" class="tablea">
+<caption>Asset Data</caption>
+<thead>
+<tr>
+<th scope="col">Asset Name</th>
+<th scope="col">Asset Type</th>
+<th scope="col">Asset Owner</th>
+<th scope="col">Created On</th>
+<!-- <th scope="col">Asset Notes</th> -->
+<th scope="col">Update Asset</th>
+<th scope="col">Eng Info</th>
+<th scope="col">Test Info</th>
+<th scope="col">Issue Info</th>
+<th scope="col">New Eng</th>
+<th scope="col">New Issue</th>
+<th scope="col">Write Report</th>
+</tr>
+</thead>
+<tbody>
+{% for row in data %}
+{% if row['_source']['asset_stuff']['asset_active'] == "No" %}
+<tr class="row_inactive">
+<td data-title="asset_name">{{row['_source']['asset_stuff']['asset_name']}}</td>
+<td data-title="asset_type">{{row['_source']['asset_stuff']['asset_type']}}</td>
+<td data-title="asset_owner">{{row['_source']['asset_stuff']['asset_owner']}}</td>
+<td data-title="asset_created_on">{{row['_source']['asset_stuff']['asset_created_on']}}</td>
+<!-- <td data-title="asset_notes">{{row['_source']['asset_stuff']['asset_notes']}}</td> -->
+<td data-title="assetUpdate"><a class="push_button fa-update darkblue" href="{{ url_for('updateasset', asset_id=row['_id']) }}"></a></td>
+<td data-title="engInfo"><a class="push_button fa-eye darkblue" href="{{ url_for('viewengagements', asset_id=row['_id'], asset_name=row['_source']['asset_stuff']['asset_name']) }}"></a></td>
+<td data-title="viewTest"><a class="push_button fa-eye darkblue" href="{{ url_for('viewtests', asset_id=row['_id'], asset_name=row['_source']['asset_stuff']['asset_name']) }}"></a></td>
+<td data-title="issueInfo"><a class="push_button fa-eye darkblue" href="{{ url_for('viewissues', asset_id=row['_id'], asset_name=row['_source']['asset_stuff']['asset_name']) }}"></a></td>
+<td data-title="newEng"><a class="push_button fa-plus darkblue" href="{{ url_for('engagements', asset_name=row['_source']['asset_stuff']['asset_name'], asset_id=row['_id']) }}"></a></td>
+<td data-title="newIssue"><a class="push_button fa-plus darkblue" href="{{ url_for('createissue', asset_name=row['_source']['asset_stuff']['asset_name'], asset_id=row['_id']) }}"></a></td>
+<td data-title="testreport"><a class="push_button fa-file darkblue" href="{{ url_for('assetreport', asset_id=row['_id']) }}"></a></td>
+</tr>
+{% else %}
+<tr>
+<td data-title="asset_name">{{row['_source']['asset_stuff']['asset_name']}}</td>
+<td data-title="asset_type">{{row['_source']['asset_stuff']['asset_type']}}</td>
+<td data-title="asset_owner">{{row['_source']['asset_stuff']['asset_owner']}}</td>
+<td data-title="asset_created_on">{{row['_source']['asset_stuff']['asset_created_on']}}</td>
+<!-- <td data-title="asset_notes">{{row['_source']['asset_stuff']['asset_notes']}}</td> -->
+<td data-title="assetUpdate"><a class="push_button fa-update darkblue" href="{{ url_for('updateasset', asset_id=row['_id']) }}"></a></td>
+<td data-title="engInfo"><a class="push_button fa-eye darkblue" href="{{ url_for('viewengagements', asset_id=row['_id'], asset_name=row['_source']['asset_stuff']['asset_name']) }}"></a></td>
+<td data-title="viewTest"><a class="push_button fa-eye darkblue" href="{{ url_for('viewtests', asset_id=row['_id'], asset_name=row['_source']['asset_stuff']['asset_name']) }}"></a></td>
+<td data-title="issueInfo"><a class="push_button fa-eye darkblue" href="{{ url_for('viewissues', asset_id=row['_id'], asset_name=row['_source']['asset_stuff']['asset_name']) }}"></a></td>
+<td data-title="newEng"><a class="push_button fa-plus darkblue" href="{{ url_for('engagements', asset_name=row['_source']['asset_stuff']['asset_name'], asset_id=row['_id']) }}"></a></td>
+<td data-title="newIssue"><a class="push_button fa-plus darkblue" href="{{ url_for('createissue', asset_name=row['_source']['asset_stuff']['asset_name'], asset_id=row['_id']) }}"></a></td>
+<td data-title="testreport"><a class="push_button fa-file darkblue" href="{{ url_for('assetreport', asset_id=row['_id']) }}"></a></td>
+</tr>
+{% endif %}
+{% endfor %}
+</tbody>
+</table>
+<script src="static/scripts.js"></script>
+{% endblock %}

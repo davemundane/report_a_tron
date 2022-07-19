@@ -1,0 +1,30 @@
+{% extends "template.html" %}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="static/buttons.css">
+<link rel="stylesheet" type="text/css" href="static/tables.css">
+<table class="tablea">
+<caption>Service Data</caption>
+<thead>
+<tr>
+<th scope="col">Service Name</th>
+<th scope="col">Service Owner</th>
+<th scope="col">Asset</th>
+<th scope="col">View Detail</th>
+<th scope="col">Update Service</th>
+<th scope="col">Write Report</th>
+</tr>
+</thead>
+<tbody>
+{% for row in data %}
+<tr>
+<td data-title="service_name">{{row['_source']['service_stuff']['service_name']}}</td>
+<td data-title="service_owner">{{row['_source']['service_stuff']['service_owner']}}</td>
+<td data-title="service_has_asset">{{(','.join(row['_source']['service_stuff']['service_has_assets']))}}</td>
+<td data-title="service_info"><a class="push_button fa-eye darkblue" href="{{ url_for('viewservicedetail', service_id=row['_id']) }}"></a></td>
+<td data-title="service_update"><a class="push_button fa-update darkblue" href="{{ url_for('updateservice', service_id=row['_id']) }}"></a></td>
+<td data-title="testreport"><a class="push_button fa-file darkblue" href="{{ url_for('servicereport', service_id=row['_id']) }}"></a></td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,60 @@
+{% extends "template.html" %}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="static/forms.css">
+<link rel="stylesheet" type="text/css" href="static/buttons.css">
+<link rel="stylesheet" type="text/css" href="static/tables.css">
+<p class="form_caption">{% if asset_name %}{{ asset_name }}{% else %}New Engagement{% endif %}</p>
+<div class="form_left_container">
+<form class="entry_form" action="/createengagement" method="post">
+<label for="engagement_form_location">Engagement Form Location</label>
+<input type="text" name="engagement_form_location" id="engagement_form_location" required autofocus>
+<label for="engagement_main_contact">Main Contact</label>
+<input type="text" name="engagement_main_contact" id="engagement_main_contact" required>
+
+<label for="engagement_risk_rating" class="status">Risk Rating</label>
+<div class="select_wrapper">
+<select name="engagement_risk_rating" id="engagement_risk_rating" required>
+<option selected="selected"></option>
+<option value="High">High</option>
+<option value="Medium">Medium</option>
+<option value="Low">Low</option>
+</select>
+</div>
+
+<label for="engagement_received_on">Received On</label>
+<input type="text" name="engagement_received_on" id="engagement_received_on" required>
+<label for="engagement_action_taken">Action Taken</label>
+<textarea type="text" name="engagement_action_taken" id="engagement_action_taken"></textarea>
+<label for="engagement_notes">Engagement Notes</label>
+<textarea type="text" name="engagement_notes" id="engagement_notes"></textarea>
+<label for="linked_assets">Linked Assets</label>
+<input type="text" name="linked_assets" id="linked_assets" value="{% if asset_id %}{{ asset_id }}{% else %}{% endif %}">
+<div class="button_frame">
+<button class="push_button_big blue" type="submit">Submit Data</button>
+</div>
+</form>
+<div class="forms">
+<form class="filter_form">
+<input type="text" id="updateFilterInput" placeholder="Type to filter...">
+</form>
+</div>
+<table id="updateTable" class="tablea">
+<caption>Asset Data</caption>
+<thead>
+<tr>
+<th scope="col">Asset ID</th>
+<th scope="col">Asset Name</th>
+</tr>
+</thead>
+<tbody>
+{% for row in assets %}
+<tr>
+<td scope="row" data-title="issue_id">{{row['_id']}}</td>
+<td data-title="asset_name">{{row['_source']['asset_stuff']['asset_name']}}</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+<script src="static/scripts.js"></script>
+{% endblock %}

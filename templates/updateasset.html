@@ -1,0 +1,65 @@
+{% extends "template.html" %}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="static/forms.css">
+<link rel="stylesheet" type="text/css" href="static/buttons.css">
+<p class="form_caption">Asset Update - ID: {{data['_id']}}</p>
+<div class="form_left_container">
+<form class="entry_form" action="/updateassetapi" method="post">
+<label for="asset_name">Asset Name</label>
+<input type="text" name="asset_name" id="asset_name" value="{{data['_source']['asset_stuff']['asset_name']}}">
+
+<label for="asset_type" class="status">Asset Type</label>
+<div class="select_wrapper">
+<select name="asset_type" id="asset_type">
+<option selected="selected">{{data['_source']['asset_stuff']['asset_type']}}</option>
+<option value="Application">Application</option>
+<option value="Third Party">Third Party</option>
+<option value="Other">Other</option>
+</select>
+</div>
+
+<label for="asset_owner">Asset Owner</label>
+<input type="text" name="asset_owner" id="asset_owner" value="{{data['_source']['asset_stuff']['asset_owner']}}">
+<label for="asset_notes">Asset Notes</label>
+<textarea type="text" name="asset_notes" id="asset_notes">{{data['_source']['asset_stuff']['asset_notes']}}</textarea>
+
+<label for="related_components">Related Components - comma separated list</label>
+<input type="text" name="related_components" id="related_components" value="{% if 'related_components' in data['_source']['asset_stuff'] %}{{ (','.join(data['_source']['asset_stuff']['related_components'])) }}{% else %}{% endif %}">
+
+<label for="asset_internet_facing" class="status">Is the Asset internet facing</label>
+<div class="select_wrapper">
+<select name="asset_internet_facing" id="asset_internet_facing" required>
+<option selected="selected">{% if data['_source']['asset_stuff']['asset_internet_facing'] == 1 %}Yes{% else %}No{% endif %}</option>
+<option value="Yes">Yes</option>
+<option value="No">No</option>
+</select>
+</div>
+
+{% if data['_source']['asset_stuff']['asset_active'] %}
+<label for="asset_active" class="status">Asset Active</label>
+<div class="select_wrapper">
+<select name="asset_active" id="asset_active">
+<option selected="selected">{{data['_source']['asset_stuff']['asset_active']}}</option>
+<option value="Yes">Yes</option>
+<option value="No">No</option>
+</select>
+</div>
+
+{% else %}
+<label for="asset_active" class="status">Asset Active</label>
+<div class="select_wrapper">
+<select name="asset_active" id="asset_active">
+<option selected="selected"></option>
+<option value="Yes">Yes</option>
+<option value="No">No</option>
+</select>
+</div>
+
+{% endif %}
+<input type="hidden" name="asset_id" id="asset_id" value="{{data['_id']}}">
+<div class="button_frame">
+<button class="push_button_big blue" type="submit">Update</button>
+</div>
+</form>
+</div>
+{% endblock %}

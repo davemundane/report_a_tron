@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" type="text/css" href="static/main.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<meta http-equiv="cache-control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="pragma" content="no-cache" />
+<title>The report-a-tron</title>
+<div class="title_page">
+<div class="search-container">
+<span class="tool-tip-text">Use 'keyword:' for exact matches;&#013;&#010;'search:' for general;&#013;&#010;and 'doc:' for document ids</span>
+<form action="/search">
+<input type="text" placeholder="Search.." name="searchTerm">
+<button type="submit"><i>?</i></button>
+</form>
+</div>
+<p class="the_header">
+<img class="reportatron" src="static/reportatron.png">
+</p>
+<div class="topnav">
+<a href="/">Home</a>
+<a href="/createasset">New Asset</a>
+<a href="/viewassets">Assets</a>
+<a href="/viewengagements">Engagements</a>
+<a href="/engagements">New Engagement</a>
+<a href="/openengagements">Open Engagements</a>
+<a href="/viewtests">Tests</a>
+<a href="/viewissues">Issues</a>
+<a href="/viewthirdparty">Third Party</a>
+<a href="/viewservices">Services</a>
+<a href="/createservice">New Service</a>
+<a href="/viewstats">Stats</a>
+<a href="/changepassword">Change Password</a>
+<a href="/logout">Logout</a>
+<a href="/breakout-a-tron">Breakout</a>
+</div>
+</div>
+</head>
+<body>
+<div class="body_container">
+{% block content %}{% endblock %}
+</div>
+</body>
+</html>

@@ -1,0 +1,11 @@
+markdown
+datetime
+flask
+requests
+waitress
+bcrypt
+flaskapp
+flask_login
+pillow
+pyotp
+qrcode

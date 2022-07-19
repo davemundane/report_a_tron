@@ -1,0 +1,17 @@
+{% extends "template.html" %}
+{% block content %}
+    <meta charset="utf-8" />
+    <title>Breakout-a-Tron</title>
+    <style>
+    	* { padding: 0; margin: 10; }
+    	canvas { background-image: url(static/darksky.jpg); background-size: cover; background-repeat: no-repeat; background-position: center center; display: block; margin: 0 auto; margin-top: 20px; }
+
+    </style>
+</head>
+<body>
+
+<canvas id="myCanvas" width="800" height="750"><p id="writing"></p></canvas>
+
+
+<script src="static/game_script.js"></script>
+{% endblock %}

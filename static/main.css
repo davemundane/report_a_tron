@@ -1,0 +1,184 @@
+* {box-sizing: border-box;}
+
+body {
+	font-family: Tahoma, Geneva, sans-serif;
+	background-color: #f7fcff;
+	overflow: auto;
+}
+
+.body_container {
+	width: 90%;
+	margin: auto;
+}
+
+p.the_header {
+	font-size: 50px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	margin: 0;
+	color: #fff;
+	background-color:
+}
+
+p.form_caption {
+	font-size: 20px;
+	margin-left: 2%;
+	color: #000;
+}
+
+p.search_data {
+	font-size: 13px;
+	padding-left: 50px;
+	padding-right: 50px;
+	color: #000;
+}
+
+p.tool_tip {
+	font-size: 12px;
+	color: #56677f;
+	display: none;
+	border: 1px solid #ccc;
+  border-radius: 4px;
+	padding: 5px;
+	text-align: justify;
+}
+
+p.main_contact {
+	margin-top: 108px;
+}
+
+p.description {
+	margin-top: 180px;
+}
+
+p.new_app_house {
+	margin-top: 280px;
+}
+
+div.title_page_right {
+    border-radius: 5px;
+    background-color: #56677f;
+		width: 74%;
+		float: right;
+		height: 100px;
+}
+
+div.title_page {
+    border-radius: 5px;
+    background-color: #8d98a6;
+}
+
+input[type=text] {
+	padding:6px;
+	margin-top:8px;
+	font-size:17px;
+	border:none;
+}
+
+.index_text {
+	width: 470px;
+	display: block;
+	margin: 50px 0 0 70px;
+	font-size: 45px;
+}
+
+.topnav {
+	overflow: hidden;
+	background-color: #e9e9e9;
+	position: relative;
+}
+
+.topnav a {
+	float: left;
+	display: block;
+	color: black;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+	font-size: 12px;
+}
+
+.topnav a:hover {
+	background-color: #ddd;
+	color: black;
+}
+
+.topnav a.active {
+	background-color: #2196F3;
+	color: white;
+}
+
+.search-container {
+	float: right;
+	margin-top: 20px;
+
+}
+
+.search-container button {
+	float: right;
+	padding: 6px 10px;
+	margin-top: 8px;
+	margin-right: 16px;
+	background: #ddd;
+	font-size: 17px;
+	border: none;
+	cursor: pointer;
+}
+
+.search-container button:hover {
+  background: #ccc;
+}
+
+.search-container .tool-tip-text {
+  visibility: hidden;
+  width: 120px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+
+  /* Position the tooltip text */
+  position: absolute;
+  z-index: 1;
+  right: 300px;
+
+  /* Fade in tooltip */
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+/* Tooltip arrow */
+.search-container .tool-tip-text::after {
+  content: "";
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.search-container:hover .tool-tip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+@media screen and (max-width: 600px) {
+
+  .topnav a, .topnav input[type=text], .topnav .search-container button {
+    float: none;
+    display: block;
+    text-align: left;
+    width: 100%;
+    margin: 0;
+    padding: 14px;
+  }
+  .topnav input[type=text] {
+    border: 1px solid #ccc;
+  }
+}
+
+img.reportatron {
+	padding-top: 5px;
+	padding-left: 30px;
+	height: 68px;
+}

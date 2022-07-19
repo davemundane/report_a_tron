@@ -1,0 +1,64 @@
+{% extends "template.html" %}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="static/forms.css">
+<link rel="stylesheet" type="text/css" href="static/buttons.css">
+<link rel="stylesheet" type="text/css" href="static/tables.css">
+<p class="form_caption">Test Update - ID: {{data['_id']}}</p>
+<div class="form_left_container">
+<form class="entry_form" action="/updatetestapi" method="post">
+
+<label for="test_type" class="status">Test Type</label>
+<div class="select_wrapper">
+<select name="test_type" id="test_type" required>
+<option selected="selected">{{data['_source']['test_stuff']['test_type']}}</option>
+<option value="Application Security Test">Application Security Test</option>
+<option value="Security Risk Assessment">Security Risk Assessment</option>
+<option value="Third Party Assessment">Third Party Assessment</option>
+</select>
+</div>
+
+<label for="test_exec_summary">Executive Summary</label>
+<textarea type="text" name="test_exec_summary" id="test_exec_summary" required>{{data['_source']['test_stuff']['test_exec_summary']}}</textarea>
+<label for="test_base_location">Base Location</label>
+<input type="text" name="test_base_location" id="test_base_location" value="{{data['_source']['test_stuff']['test_base_location']}}" required>
+<label for="test_limitations">Test Limitations</label>
+<input type="text" name="test_limitations" id="test_limitations" value="{{data['_source']['test_stuff']['test_limitations']}}" required>
+<label for="test_main_contact">Main Contact</label>
+<input type="text" name="test_main_contact" id="test_main_contact" value="{{data['_source']['test_stuff']['test_main_contact']}}" required>
+<label for="test_date">Test Date</label>
+<input type="text" name="test_date" id="test_date" value="{{data['_source']['test_stuff']['test_date']}}">
+<label for="test_notes">Test Notes</label>
+<textarea type="text" name="test_notes" id="test_notes">{{data['_source']['test_stuff']['test_notes']}}</textarea>
+<label for="linked_assets">Linked Assets</label>
+<input type="text" name="linked_assets" id="linked_assets" value="{% if data['_source']['test_stuff']['test_has_assets'] %}{{ data['_source']['test_stuff']['test_has_assets'][0] }}{% else %}{% endif %}">
+<input type="hidden" name="engagement_id" id="engagement_id" value="{% if data['_source']['test_stuff']['test_has_engagements'] %}{{ data['_source']['test_stuff']['test_has_engagements'][0] }}{% else %}{% endif %}">
+<input type="hidden" name="test_id" id="test_id" value="{{data['_id']}}">
+<div class="button_frame">
+<button class="push_button_big blue" type="submit">Update</button>
+</div>
+</form>
+<div class="forms">
+<form class="filter_form">
+<input type="text" id="updateFilterInput" placeholder="Type to filter...">
+</form>
+</div>
+<table id="updateTable" class="tablea">
+<caption>Asset Data</caption>
+<thead>
+<tr>
+<th scope="col">Asset ID</th>
+<th scope="col">Asset Name</th>
+</tr>
+</thead>
+<tbody>
+{% for row in assets %}
+<tr>
+<td scope="row" data-title="issue_id">{{row['_id']}}</td>
+<td data-title="asset_name">{{row['_source']['asset_stuff']['asset_name']}}</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+<script src="static/scripts.js"></script>
+{% endblock %}

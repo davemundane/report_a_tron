@@ -1,0 +1,26 @@
+{% extends "logintemplate.html" %}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="static/forms.css">
+<link rel="stylesheet" type="text/css" href="static/buttons.css">
+<link rel="stylesheet" type="text/css" href="static/tables.css">
+<p class="form_caption">Scan the qr code with your authenticator app</p>
+<img src="static/qr.png">
+<div class="form_left_container">
+<form class="entry_form" action="/onboardotpapi" method="post">
+<label for="user_otp">Enter an OTP from your app</label>
+<input type="text" name="user_otp" id="user_otp" required autofocus>
+<label for="message">
+  {% with messages = get_flashed_messages() %}
+  {% if messages %}
+  {% for message in messages %}
+  {{ message }}
+  {% endfor %}
+  {% endif %}
+  {% endwith %}
+</label>
+<div class="button_frame">
+<button class="push_button_big blue" type="submit">Submit</button>
+</div>
+</form>
+</div>
+{% endblock %}
